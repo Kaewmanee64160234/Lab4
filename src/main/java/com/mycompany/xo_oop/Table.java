@@ -64,11 +64,11 @@ public class Table {
         }
     }
 
-//    public void currentPlayer() {
-//        if (currentPlay == player1) {
-//            currentPlay = player2;
-//        } else {
-//            currentPlay = player1;
-//        }
-//    }
+    public void changePlayer() {
+        if (currentPlay == player1) {
+            currentPlay = player2;
+        } else {
+            currentPlay = player1;
+        }
+    }
 }
