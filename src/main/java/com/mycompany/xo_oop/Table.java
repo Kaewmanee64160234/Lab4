@@ -4,6 +4,8 @@
  */
 package com.mycompany.xo_oop;
 
+import java.util.Scanner;
+
 /**
  *
  * @author USER
@@ -34,7 +36,7 @@ public class Table {
     public void printTable() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                System.out.print(table[i][j]+" ");
+                System.out.print(table[i][j] + " ");
 
             }
             System.out.println();
@@ -42,4 +44,31 @@ public class Table {
         }
     }
 
+    public boolean setRowCol(int row, int column) {
+        Scanner sc = new Scanner(System.in);
+          if ((row > 0 && row < 4) && (column > 0 && column < 4)) {
+            while (!table[row - 1][column - 1].equals("-")) {
+                System.out.println("--------------------------------");
+              
+                System.out.print("Input Row: ");
+                row = sc.nextInt();
+                System.out.print("Input Column: ");
+                column = sc.nextInt();
+
+            }
+            table[row - 1][column - 1] = currentPlay.getSymbol();
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+//    public void currentPlayer() {
+//        if (currentPlay == player1) {
+//            currentPlay = player2;
+//        } else {
+//            currentPlay = player1;
+//        }
+//    }
 }
