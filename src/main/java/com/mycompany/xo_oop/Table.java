@@ -71,4 +71,57 @@ public class Table {
             currentPlay = player1;
         }
     }
+     public  boolean checkRow(int row,int column) {
+        for (int i = 0; i < 3; i++) {
+            if (!table[row - 1][i].equals(currentPlay.getSymbol())) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    public  boolean checkColumn(int row, int column) {
+        for (int i = 0; i < 3; i++) {
+            if (!table[i][column - 1].equals(currentPlay.getSymbol())) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    public  boolean checkDiagonal(int row, int column) {
+        if (row - 1 == column - 1) {
+            for (int i = 0; i < 3; i++) {
+                if (!table[i][i].equals(currentPlay.getSymbol())) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        if ((row + column) - 2 == 2) {
+            for (int i = 0; i < 3; i++) {
+                if (!table[i][2 - i].equals(currentPlay.getSymbol())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public  boolean checkDraw() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (table[i][j].equals("-")) {
+                    return false;
+                }
+
+            }
+
+        }
+        return true;
+    }
 }
