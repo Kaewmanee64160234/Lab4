@@ -12,15 +12,15 @@ import java.util.Scanner;
  */
 public class Table {
 
-    private String[][] table;
+    private String[][] table = {{"-","-","-",},{"-","-","-",},{"-","-","-",}};
 
     private Player currentPlay;
     private Player player1;
     private Player player2;
     int row, column;
 
-    public Table(String[][] table, Player currentPlay, Player player1, Player player2) {
-        this.table = table;
+    public Table( Player currentPlay, Player player1, Player player2) {
+      
         this.currentPlay = currentPlay;
         this.player1 = player1;
         this.player2 = player2;

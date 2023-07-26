@@ -12,11 +12,12 @@ import java.util.Scanner;
  */
 public class Game {
 
-    private Player player1 = new Player("X", 0, 0, 0);
-   private Player player2 = new Player("O", 0, 0, 0);
-    private Table table ;
+     Player player1 = new Player("X", 0, 0, 0);
+     Player player2 = new Player("O", 0, 0, 0);
+    private Table table = new Table(player1, player1, player2);
     boolean isEnd = false;
     String[][] t = table.getTable();
+    Scanner sc = new Scanner(System.in);
 
     public void startGame() {
         System.out.println("Welcome to XO Game");
@@ -36,24 +37,24 @@ public class Game {
     }
 
     public void process() {
-         showTable();
+        showTable();
+        showTurn();
         while (!isEnd) {
             if (inputRowAndColumn()) {
                 showTable();
                 checkWinner();
-                showTurn();
+                changeTurn();
+
             }
 
         }
-        System.out.println("GoodBye!!");
+       showGoodBye();
     }
 
-    public static void main(String[] args) {
-
-    }
+   
 
     public void showTable() {
-         for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.print(t[i][j] + " ");
 
@@ -64,7 +65,36 @@ public class Game {
     }
 
     private void showTurn() {
-        System.out.println("Your "+table.getCurrentPlay().getSymbol()+" Turn >>>");
+        System.out.println("Your " + table.getCurrentPlay().getSymbol() + " Turn >>>");
+    }
+
+    private void changeTurn() {
+        table.changePlayer();
+    }
+
+    private boolean inputRowAndColumn() {
+        System.out.print("input row: ");
+        int row = sc.nextInt();
+          System.out.print("input column: ");
+        int column = sc.nextInt();
+        return table.setRowCol(row, column);
+    }
+
+    private boolean checkWinner() {
+        if (table.checkWinner()) {
+            isEnd = true;
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        Game game  = new Game();
+        game.process();
+    }
+
+    private void showGoodBye() {
+        System.out.println(player1.toString());
+        System.out.println(player2.toString());
+        System.out.println("Good Bye!!");
     }
 
 }
