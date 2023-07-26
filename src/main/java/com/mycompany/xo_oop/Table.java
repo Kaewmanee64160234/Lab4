@@ -17,6 +17,8 @@ public class Table {
     private Player currentPlay;
     private Player player1;
     private Player player2;
+    int row,column;
+    
 
     public Table(String[][] table, Player currentPlay, Player player1, Player player2) {
         this.table = table;
@@ -49,6 +51,8 @@ public class Table {
         if ((row > 0 && row < 4) && (column > 0 && column < 4)) {
             if (table[row - 1][column - 1] == "-") {
                 table[row - 1][column - 1] = currentPlay.getSymbol();
+                this.column = column;
+                this.row = row;
                 return true;
             }
 
@@ -68,7 +72,7 @@ public class Table {
         }
     }
 
-    public boolean checkRow(int row, int column) {
+    public boolean checkRow() {
         for (int i = 0; i < 3; i++) {
             if (!table[row - 1][i].equals(currentPlay.getSymbol())) {
                 return false;
@@ -78,7 +82,7 @@ public class Table {
         return true;
     }
 
-    public boolean checkColumn(int row, int column) {
+    public boolean checkColumn() {
         for (int i = 0; i < 3; i++) {
             if (!table[i][column - 1].equals(currentPlay.getSymbol())) {
                 return false;
@@ -88,7 +92,7 @@ public class Table {
         return true;
     }
 
-    public boolean checkDiagonal(int row, int column) {
+    public boolean checkDiagonal() {
         if (row - 1 == column - 1) {
             for (int i = 0; i < 3; i++) {
                 if (!table[i][i].equals(currentPlay.getSymbol())) {
@@ -122,9 +126,9 @@ public class Table {
         return true;
     }
 
-    public boolean checkWinner(int row, int column) {
+    public boolean checkWinner() {
 
-        if (checkRow(row, column) || checkColumn(row, column) || checkDiagonal(row, column)) {
+        if (checkRow() || checkColumn() || checkDiagonal()) {
 
             System.out.println("+--------------------+");
             System.out.println("|    !!! " + currentPlay.getSymbol() + " Win !!!   |");
@@ -143,5 +147,7 @@ public class Table {
         }
         return false;
     }
+    
+    
 
 }
