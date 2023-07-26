@@ -9,11 +9,11 @@ package com.mycompany.xo_oop;
  * @author USER
  */
 public class Player {
-       private String symbol;
+
+    private String symbol;
     private int winCount;
     private int loseCount;
     private int drawCount;
-
 
     public Player(String symbol, int winCount, int loseCount, int drawCount) {
         this.symbol = symbol;
@@ -21,7 +21,7 @@ public class Player {
         this.loseCount = loseCount;
         this.drawCount = drawCount;
     }
-    
+
     public String getSymbol() {
         return symbol;
     }
@@ -37,8 +37,17 @@ public class Player {
     public int getDrawCount() {
         return drawCount;
     }
- 
-    
-    
-    
+
+    public void plusWin() {
+        winCount++;
+    }
+
+    public void plusLose() {
+        loseCount++;
+    }
+
+    public void plusDraw() {
+        drawCount++;
+    }
+
 }
