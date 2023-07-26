@@ -17,8 +17,7 @@ public class Table {
     private Player currentPlay;
     private Player player1;
     private Player player2;
-    int row,column;
-    
+    int row, column;
 
     public Table(String[][] table, Player currentPlay, Player player1, Player player2) {
         this.table = table;
@@ -133,6 +132,7 @@ public class Table {
             System.out.println("+--------------------+");
             System.out.println("|    !!! " + currentPlay.getSymbol() + " Win !!!   |");
             System.out.println("+--------------------+");
+            saveWin("win");
             return true;
 
         } else {
@@ -141,13 +141,30 @@ public class Table {
                 System.out.println("+--------------------+");
                 System.out.println("|    !!! Draw !!!    |");
                 System.out.println("+--------------------+");
+                saveWin("draw");
                 return true;
 
             }
         }
         return false;
     }
-    
-    
+
+    public void saveWin(String type) {
+        if (type.equals("win")) {
+            if (currentPlay == player1) {
+                currentPlay.plusWin();
+                player2.plusLose();
+            }
+
+        }
+        if (type.equals("draw")) {
+            if (currentPlay == player1) {
+                currentPlay.plusDraw();
+                player2.plusDraw();
+            }
+
+        }
+
+    }
 
 }
