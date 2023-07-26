@@ -154,6 +154,9 @@ public class Table {
             if (currentPlay == player1) {
                 currentPlay.plusWin();
                 player2.plusLose();
+            }else{
+                player2.plusWin();
+                player1.plusLose();
             }
 
         }
