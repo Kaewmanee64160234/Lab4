@@ -46,18 +46,14 @@ public class Table {
 
     public boolean setRowCol(int row, int column) {
         Scanner sc = new Scanner(System.in);
-          if ((row > 0 && row < 4) && (column > 0 && column < 4)) {
-            while (!table[row - 1][column - 1].equals("-")) {
-                System.out.println("--------------------------------");
-              
-                System.out.print("Input Row: ");
-                row = sc.nextInt();
-                System.out.print("Input Column: ");
-                column = sc.nextInt();
-
+        if ((row > 0 && row < 4) && (column > 0 && column < 4)) {
+            if (table[row - 1][column - 1] == "-") {
+                table[row - 1][column - 1] = currentPlay.getSymbol();
+                return true;
             }
-            table[row - 1][column - 1] = currentPlay.getSymbol();
-            return true;
+
+            return false;
+
         } else {
 
             return false;
@@ -71,7 +67,8 @@ public class Table {
             currentPlay = player1;
         }
     }
-     public  boolean checkRow(int row,int column) {
+
+    public boolean checkRow(int row, int column) {
         for (int i = 0; i < 3; i++) {
             if (!table[row - 1][i].equals(currentPlay.getSymbol())) {
                 return false;
@@ -81,7 +78,7 @@ public class Table {
         return true;
     }
 
-    public  boolean checkColumn(int row, int column) {
+    public boolean checkColumn(int row, int column) {
         for (int i = 0; i < 3; i++) {
             if (!table[i][column - 1].equals(currentPlay.getSymbol())) {
                 return false;
@@ -91,7 +88,7 @@ public class Table {
         return true;
     }
 
-    public  boolean checkDiagonal(int row, int column) {
+    public boolean checkDiagonal(int row, int column) {
         if (row - 1 == column - 1) {
             for (int i = 0; i < 3; i++) {
                 if (!table[i][i].equals(currentPlay.getSymbol())) {
@@ -112,7 +109,7 @@ public class Table {
         return false;
     }
 
-    public  boolean checkDraw() {
+    public boolean checkDraw() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (table[i][j].equals("-")) {
@@ -124,4 +121,27 @@ public class Table {
         }
         return true;
     }
+
+    public boolean checkWinner(int row, int column) {
+
+        if (checkRow(row, column) || checkColumn(row, column) || checkDiagonal(row, column)) {
+
+            System.out.println("+--------------------+");
+            System.out.println("|    !!! " + currentPlay.getSymbol() + " Win !!!   |");
+            System.out.println("+--------------------+");
+            return true;
+
+        } else {
+            if (checkDraw()) {
+
+                System.out.println("+--------------------+");
+                System.out.println("|    !!! Draw !!!    |");
+                System.out.println("+--------------------+");
+                return true;
+
+            }
+        }
+        return false;
+    }
+
 }
