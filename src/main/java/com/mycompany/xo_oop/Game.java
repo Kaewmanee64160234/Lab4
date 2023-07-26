@@ -46,6 +46,7 @@ public class Game {
                 changeTurn();
 
             }
+            System.out.println("-----------------------");
 
         }
         showGoodBye();
@@ -63,7 +64,7 @@ public class Game {
     }
 
     private void showTurn() {
-        System.out.println("Your " + table.getCurrentPlay().getSymbol() + " Turn >>>");
+        System.out.println(table.getCurrentPlay().getSymbol() + " Turn >>>");
     }
 
     private void changeTurn() {
@@ -100,11 +101,14 @@ public class Game {
         game.process();
     }
 
-    private void showGoodBye() {
-        System.out.println("-----Good Bye!!-----");
+    private void showPoint() {
         System.out.println(player1.toString());
         System.out.println(player2.toString());
-        
+    }
+
+    private void showGoodBye() {
+        System.out.println("-----Good Bye!!-----");
+        showPoint();
     }
 
 }
