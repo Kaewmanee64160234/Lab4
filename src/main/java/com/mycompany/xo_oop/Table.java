@@ -12,18 +12,23 @@ import java.util.Scanner;
  */
 public class Table {
 
-    private String[][] table = {{"-","-","-",},{"-","-","-",},{"-","-","-",}};
+    String[][] table = {{"-", "-", "-",}, {"-", "-", "-",}, {"-", "-", "-",}};
 
     private Player currentPlay;
     private Player player1;
     private Player player2;
     int row, column;
+    Scanner sc = new Scanner(System.in);
 
-    public Table( Player currentPlay, Player player1, Player player2) {
-      
+    public Table(Player currentPlay, Player player1, Player player2) {
+
         this.currentPlay = currentPlay;
         this.player1 = player1;
         this.player2 = player2;
+    }
+
+    public void setTable(String[][] table) {
+        this.table = table;
     }
 
     public String[][] getTable() {
@@ -33,8 +38,6 @@ public class Table {
     public Player getCurrentPlay() {
         return currentPlay;
     }
-
-
 
     public boolean setRowCol(int row, int column) {
         Scanner sc = new Scanner(System.in);
@@ -124,6 +127,8 @@ public class Table {
             System.out.println("|    !!! " + currentPlay.getSymbol() + " Win !!!   |");
             System.out.println("+--------------------+");
             saveWin("win");
+            System.out.println(player1.toString());
+            System.out.println(player2.toString());
             return true;
 
         } else {
@@ -133,6 +138,8 @@ public class Table {
                 System.out.println("|    !!! Draw !!!    |");
                 System.out.println("+--------------------+");
                 saveWin("draw");
+                System.out.println(player1.toString());
+                System.out.println(player2.toString());
                 return true;
 
             }
@@ -145,7 +152,7 @@ public class Table {
             if (currentPlay == player1) {
                 currentPlay.plusWin();
                 player2.plusLose();
-            }else{
+            } else {
                 player2.plusWin();
                 player1.plusLose();
             }
@@ -157,6 +164,25 @@ public class Table {
                 player2.plusDraw();
             }
 
+        }
+
+    }
+
+    public boolean askContinute() {
+        System.out.print("You want to play again? (Y/n): ");
+        String input = sc.next().toLowerCase();
+        while (!input.equals("y") && !input.equals("n")) {
+            System.out.print("You want to play again (Y/N) : ");
+            input = sc.next().toLowerCase();
+        }
+        if (input.equals("n")) {
+            return false;
+        } else {
+            currentPlay = player2;
+            String[][] table_ = {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
+            setTable(table_);
+
+            return true;
         }
 
     }

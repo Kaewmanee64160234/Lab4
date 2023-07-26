@@ -12,8 +12,8 @@ import java.util.Scanner;
  */
 public class Game {
 
-     Player player1 = new Player("X", 0, 0, 0);
-     Player player2 = new Player("O", 0, 0, 0);
+    Player player1 = new Player("X", 0, 0, 0);
+    Player player2 = new Player("O", 0, 0, 0);
     private Table table = new Table(player1, player1, player2);
     boolean isEnd = false;
     String[][] t = table.getTable();
@@ -48,10 +48,8 @@ public class Game {
             }
 
         }
-       showGoodBye();
+        showGoodBye();
     }
-
-   
 
     public void showTable() {
         for (int i = 0; i < 3; i++) {
@@ -75,26 +73,38 @@ public class Game {
     private boolean inputRowAndColumn() {
         System.out.print("input row: ");
         int row = sc.nextInt();
-          System.out.print("input column: ");
+        System.out.print("input column: ");
         int column = sc.nextInt();
         return table.setRowCol(row, column);
     }
 
     private boolean checkWinner() {
+
         if (table.checkWinner()) {
+            if (table.askContinute()) {
+                System.out.println("----New Game-----");
+                t = table.getTable();
+                showTurn();
+                showTable();
+
+                return false;
+            }
             isEnd = true;
+            return true;
         }
         return false;
     }
+
     public static void main(String[] args) {
-        Game game  = new Game();
+        Game game = new Game();
         game.process();
     }
 
     private void showGoodBye() {
+        System.out.println("-----Good Bye!!-----");
         System.out.println(player1.toString());
         System.out.println(player2.toString());
-        System.out.println("Good Bye!!");
+        
     }
 
 }

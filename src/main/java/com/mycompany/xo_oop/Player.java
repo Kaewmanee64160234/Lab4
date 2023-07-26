@@ -52,8 +52,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return symbol+"player ( win: "+getWinCount()+" lose: "+getLoseCount()+" draw : "+getDrawCount()+" )";
+        return symbol + " player ( win: " + getWinCount() + " lose: " + getLoseCount() + " draw : " + getDrawCount() + " )";
     }
-    
 
 }
