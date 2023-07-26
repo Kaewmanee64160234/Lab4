@@ -12,9 +12,11 @@ import java.util.Scanner;
  */
 public class Game {
 
-    Player player1 = new Player("X", 0, 0, 0);
-    Player player2 = new Player("O", 0, 0, 0);
+    private Player player1 = new Player("X", 0, 0, 0);
+   private Player player2 = new Player("O", 0, 0, 0);
+    private Table table ;
     boolean isEnd = false;
+    String[][] t = table.getTable();
 
     public void startGame() {
         System.out.println("Welcome to XO Game");
@@ -34,10 +36,35 @@ public class Game {
     }
 
     public void process() {
+         showTable();
+        while (!isEnd) {
+            if (inputRowAndColumn()) {
+                showTable();
+                checkWinner();
+                showTurn();
+            }
+
+        }
+        System.out.println("GoodBye!!");
     }
 
     public static void main(String[] args) {
 
+    }
+
+    public void showTable() {
+         for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(t[i][j] + " ");
+
+            }
+            System.out.println();
+
+        }
+    }
+
+    private void showTurn() {
+        System.out.println("Your "+table.getCurrentPlay().getSymbol()+" Turn >>>");
     }
 
 }
