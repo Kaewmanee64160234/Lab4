@@ -40,21 +40,16 @@ public class Table {
     }
 
     public boolean setRowCol(int row, int column) {
-        Scanner sc = new Scanner(System.in);
-        if ((row > 0 && row < 4) && (column > 0 && column < 4)) {
-            if (table[row - 1][column - 1] == "-") {
-                table[row - 1][column - 1] = currentPlay.getSymbol();
-                this.column = column;
-                this.row = row;
-                return true;
-            }
 
-            return false;
-
-        } else {
-
-            return false;
+        if (table[row - 1][column - 1] == "-") {
+            table[row - 1][column - 1] = currentPlay.getSymbol();
+            this.column = column;
+            this.row = row;
+            return true;
         }
+
+        return false;
+
     }
 
     public void changePlayer() {

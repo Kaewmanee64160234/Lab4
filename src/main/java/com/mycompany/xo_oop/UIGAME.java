@@ -14,6 +14,7 @@ public class UIGAME extends javax.swing.JFrame {
     Player o;
     Table table;
     String[][] t;
+    int row, col;
 
     /**
      * Creates new form UIGAME
@@ -284,22 +285,42 @@ public class UIGAME extends javax.swing.JFrame {
 
     private void btnTable1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable1ActionPerformed
         // TODO add your handling code here:
+        row = 1;
+        col = 1;
+        table.setRowCol(row, col);
+        showBoard();
     }//GEN-LAST:event_btnTable1ActionPerformed
 
     private void btnTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable2ActionPerformed
         // TODO add your handling code here:
+        row = 1;
+        col = 2;
+        table.setRowCol(row, col);
+        showBoard();
     }//GEN-LAST:event_btnTable2ActionPerformed
 
     private void btnTable3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable3ActionPerformed
         // TODO add your handling code here:
+        row = 1;
+        col = 3;
+        table.setRowCol(row, col);
+        showBoard();
     }//GEN-LAST:event_btnTable3ActionPerformed
 
     private void btnTable4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable4ActionPerformed
         // TODO add your handling code here:
+        row = 2;
+        col = 1;
+        table.setRowCol(row, col);
+        showBoard();
     }//GEN-LAST:event_btnTable4ActionPerformed
 
     private void btnTable5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable5ActionPerformed
         // TODO add your handling code here:
+        row = 2;
+        col = 2;
+        table.setRowCol(row, col);
+        showBoard();
     }//GEN-LAST:event_btnTable5ActionPerformed
 
     private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
@@ -307,19 +328,35 @@ public class UIGAME extends javax.swing.JFrame {
     }//GEN-LAST:event_NewGameActionPerformed
 
     private void btnTable7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable7ActionPerformed
+        row = 3;
+        col = 1;
+        table.setRowCol(row, col);
+        showBoard();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTable7ActionPerformed
 
     private void btnTable8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable8ActionPerformed
-        // TODO add your handling code here:
+        row = 3;
+        col = 2;
+        table.setRowCol(row, col);
+        showBoard();// TODO add your handling code here:
     }//GEN-LAST:event_btnTable8ActionPerformed
 
     private void btnTable9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable9ActionPerformed
-        // TODO add your handling code here:
+
+        row = 3;
+        col = 3;
+        table.setRowCol(row, col);
+        showBoard();
+// TODO add your handling code here:
     }//GEN-LAST:event_btnTable9ActionPerformed
 
     private void btnTable6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable6ActionPerformed
         // TODO add your handling code here:
+        row = 2;
+        col = 3;
+        table.setRowCol(row, col);
+        showBoard();
     }//GEN-LAST:event_btnTable6ActionPerformed
     private void showWelcome() {
         txtMessage.setText("Welcome XO Game");
@@ -384,20 +421,20 @@ public class UIGAME extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showBoard() {
-       t = table.getTable();
-       btnTable1.setText(t[0][0]);
-       btnTable2.setText(t[0][1]);
-       btnTable3.setText(t[0][2]);
-       btnTable4.setText(t[1][0]);
-       btnTable5.setText(t[1][1]);
-       btnTable6.setText(t[1][2]);
-       btnTable7.setText(t[2][0]);
-       btnTable8.setText(t[2][1]);
-       btnTable9.setText(t[2][2]);
-       
+        t = table.getTable();
+        btnTable1.setText(t[0][0]);
+        btnTable2.setText(t[0][1]);
+        btnTable3.setText(t[0][2]);
+        btnTable4.setText(t[1][0]);
+        btnTable5.setText(t[1][1]);
+        btnTable6.setText(t[1][2]);
+        btnTable7.setText(t[2][0]);
+        btnTable8.setText(t[2][1]);
+        btnTable9.setText(t[2][2]);
+
     }
 
     private void showTurn() {
-        txtMessage.setText("Your "+table.getCurrentPlay().getSymbol()+" Turn !!");
+        txtMessage.setText("Your " + table.getCurrentPlay().getSymbol() + " Turn !!");
     }
 }
