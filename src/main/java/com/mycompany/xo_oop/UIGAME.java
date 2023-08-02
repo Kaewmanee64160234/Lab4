@@ -26,6 +26,7 @@ public class UIGAME extends javax.swing.JFrame {
         showWelcome();
         newBoard();
         showBoard();
+        showTurn();
     }
 
     /**
@@ -52,7 +53,7 @@ public class UIGAME extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         NewGame = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        txtWelcome = new javax.swing.JLabel();
+        txtMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,7 +159,7 @@ public class UIGAME extends javax.swing.JFrame {
                                 .addComponent(btnTable5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnTable6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,23 +233,23 @@ public class UIGAME extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
-        txtWelcome.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        txtWelcome.setText("Welcome to XO Game");
+        txtMessage.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        txtMessage.setText("Welcome to XO Game");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -262,7 +263,7 @@ public class UIGAME extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -321,7 +322,7 @@ public class UIGAME extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTable6ActionPerformed
     private void showWelcome() {
-        txtWelcome.setText("Welcome XO Game");
+        txtMessage.setText("Welcome XO Game");
     }
 
     private void newBoard() {
@@ -379,7 +380,7 @@ public class UIGAME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel txtWelcome;
+    private javax.swing.JLabel txtMessage;
     // End of variables declaration//GEN-END:variables
 
     private void showBoard() {
@@ -394,5 +395,9 @@ public class UIGAME extends javax.swing.JFrame {
        btnTable8.setText(t[2][1]);
        btnTable9.setText(t[2][2]);
        
+    }
+
+    private void showTurn() {
+        txtMessage.setText("Your "+table.getCurrentPlay().getSymbol()+" Turn !!");
     }
 }
