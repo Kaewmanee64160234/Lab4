@@ -15,6 +15,10 @@ public class Table {
     String[][] table = {{"-", "-", "-",}, {"-", "-", "-",}, {"-", "-", "-",}};
 
     private Player currentPlay;
+
+    public void setCurrentPlay(Player currentPlay) {
+        this.currentPlay = currentPlay;
+    }
     private Player player1;
     private Player player2;
     int row, column;

@@ -351,7 +351,9 @@ public class UIGAME extends javax.swing.JFrame {
         table.setTable(t_);
         isEnd = false;
         t = table.getTable();
+        table.setCurrentPlay(x);
         showBoard();
+        showTurn();
     }//GEN-LAST:event_NewGameActionPerformed
 
     private void btnTable7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable7ActionPerformed
