@@ -15,6 +15,7 @@ public class UIGAME extends javax.swing.JFrame {
     Table table;
     String[][] t;
     int row, col;
+    private boolean isEnd = false;
 
     /**
      * Creates new form UIGAME
@@ -287,40 +288,58 @@ public class UIGAME extends javax.swing.JFrame {
         // TODO add your handling code here:
         row = 1;
         col = 1;
-        table.setRowCol(row, col);
-        showBoard();
+
+        process();
     }//GEN-LAST:event_btnTable1ActionPerformed
+
+    private void process() {
+
+        showBoard();
+        if (table.setRowCol(row, col)) {
+            showBoard();
+
+            if (checkWin()) {
+                showBoard();
+                showResult();
+            } else {
+                table.changePlayer();
+                showTurn();
+            }
+        }
+
+    }
+
+    private boolean checkWin() {
+        return table.checkDraw() || table.checkColumn() || table.checkRow() || table.checkDiagonal();
+    }
+
 
     private void btnTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable2ActionPerformed
         // TODO add your handling code here:
         row = 1;
         col = 2;
-        table.setRowCol(row, col);
-        showBoard();
+        process();
     }//GEN-LAST:event_btnTable2ActionPerformed
 
     private void btnTable3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable3ActionPerformed
         // TODO add your handling code here:
         row = 1;
         col = 3;
-        table.setRowCol(row, col);
-        showBoard();
+        process();
     }//GEN-LAST:event_btnTable3ActionPerformed
 
     private void btnTable4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable4ActionPerformed
         // TODO add your handling code here:
         row = 2;
         col = 1;
-        table.setRowCol(row, col);
-        showBoard();
+        process();
     }//GEN-LAST:event_btnTable4ActionPerformed
 
     private void btnTable5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable5ActionPerformed
         // TODO add your handling code here:
         row = 2;
         col = 2;
-        table.setRowCol(row, col);
-        showBoard();
+        process();
     }//GEN-LAST:event_btnTable5ActionPerformed
 
     private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
@@ -330,33 +349,27 @@ public class UIGAME extends javax.swing.JFrame {
     private void btnTable7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable7ActionPerformed
         row = 3;
         col = 1;
-        table.setRowCol(row, col);
-        showBoard();
-        // TODO add your handling code here:
+        process();
     }//GEN-LAST:event_btnTable7ActionPerformed
 
     private void btnTable8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable8ActionPerformed
         row = 3;
         col = 2;
-        table.setRowCol(row, col);
-        showBoard();// TODO add your handling code here:
+        process();
     }//GEN-LAST:event_btnTable8ActionPerformed
 
     private void btnTable9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable9ActionPerformed
 
         row = 3;
         col = 3;
-        table.setRowCol(row, col);
-        showBoard();
-// TODO add your handling code here:
+        process();
     }//GEN-LAST:event_btnTable9ActionPerformed
 
     private void btnTable6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable6ActionPerformed
         // TODO add your handling code here:
         row = 2;
         col = 3;
-        table.setRowCol(row, col);
-        showBoard();
+        process();
     }//GEN-LAST:event_btnTable6ActionPerformed
     private void showWelcome() {
         txtMessage.setText("Welcome XO Game");
@@ -436,5 +449,16 @@ public class UIGAME extends javax.swing.JFrame {
 
     private void showTurn() {
         txtMessage.setText("Your " + table.getCurrentPlay().getSymbol() + " Turn !!");
+    }
+
+    private void showResult() {
+        if (table.checkDraw()) {
+
+            txtMessage.setText("Draw!!");
+            isEnd = true;
+        } else if (table.checkColumn() || table.checkRow() || table.checkDiagonal()) {
+            txtMessage.setText(table.getCurrentPlay().getSymbol() + " Win!!!");
+            isEnd = true;
+        }
     }
 }
