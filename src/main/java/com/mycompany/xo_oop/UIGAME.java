@@ -15,7 +15,7 @@ public class UIGAME extends javax.swing.JFrame {
     Table table;
     String[][] t;
     int row, col;
-    private boolean isEnd = false;
+    boolean isEnd;
 
     /**
      * Creates new form UIGAME
@@ -294,16 +294,19 @@ public class UIGAME extends javax.swing.JFrame {
 
     private void process() {
 
-        showBoard();
-        if (table.setRowCol(row, col)) {
+        if (!isEnd) {
             showBoard();
-
-            if (checkWin()) {
+            if (table.setRowCol(row, col)) {
                 showBoard();
-                showResult();
-            } else {
-                table.changePlayer();
-                showTurn();
+
+                if (checkWin()) {
+                    showBoard();
+                    showResult();
+                    isEnd = true;
+                } else {
+                    table.changePlayer();
+                    showTurn();
+                }
             }
         }
 
