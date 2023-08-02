@@ -347,6 +347,11 @@ public class UIGAME extends javax.swing.JFrame {
 
     private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
         // TODO add your handling code here:
+        String[][] t_ = {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
+        table.setTable(t_);
+        isEnd = false;
+        t = table.getTable();
+        showBoard();
     }//GEN-LAST:event_NewGameActionPerformed
 
     private void btnTable7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTable7ActionPerformed
