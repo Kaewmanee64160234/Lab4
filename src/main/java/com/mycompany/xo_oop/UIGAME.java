@@ -336,7 +336,9 @@ public class UIGAME extends javax.swing.JFrame {
     private void process() {
 
         if (!isEnd) {
+            NewGame.setVisible(false);
             showBoard();
+            
             if (table.setRowCol(row, col)) {
                 showBoard();
 
@@ -521,6 +523,7 @@ public class UIGAME extends javax.swing.JFrame {
             textWinO.setText("Win : " + o.getWinCount());
             textLoseX.setText("Lose : " + x.getLoseCount());
             textLoseO.setText("Lose : " + o.getLoseCount());
+           NewGame.setVisible(true);
         } else if (table.checkColumn() || table.checkRow() || table.checkDiagonal()) {
             txtMessage.setText(table.getCurrentPlay().getSymbol() + " Win!!!");
             if (table.getCurrentPlay().getSymbol().equals("X")) {
@@ -543,6 +546,7 @@ public class UIGAME extends javax.swing.JFrame {
                 textLoseO.setText("Lose : " + o.getLoseCount());
             }
             isEnd = true;
+             NewGame.setVisible(true);
 
         }
     }
