@@ -14,10 +14,10 @@ public class Game {
 
     Player player1 = new Player("X", 0, 0, 0);
     Player player2 = new Player("O", 0, 0, 0);
+    Scanner sc = new Scanner(System.in);
     private Table table = new Table(player1, player1, player2);
     boolean isEnd = false;
     String[][] t = table.getTable();
-    Scanner sc = new Scanner(System.in);
 
     public void startGame() {
         System.out.println("Welcome to XO Game");
