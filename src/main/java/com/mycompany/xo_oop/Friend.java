@@ -4,11 +4,13 @@
  */
 package com.mycompany.xo_oop;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class Friend {
+public class Friend implements Serializable{
 
     private int id;
     private String name;
