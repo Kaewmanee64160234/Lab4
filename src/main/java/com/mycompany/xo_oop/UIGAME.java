@@ -7,8 +7,10 @@ package com.mycompany.xo_oop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,6 +56,31 @@ public class UIGAME extends javax.swing.JFrame {
             try {
                 if (fis != null) {
                     fis.close();
+
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(UIGAME.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    public void save() {
+        FileOutputStream fos = null;
+        try {
+            File file = new File("stat.dat");
+            fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(o);
+            oos.writeObject(x);
+            oos.close();
+            fos.close();
+        } catch (Exception ex) {
+            System.out.println("ERROR!");
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
 
                 }
             } catch (IOException ex) {
@@ -378,6 +405,7 @@ public class UIGAME extends javax.swing.JFrame {
                     showBoard();
                     showResult();
                     isEnd = true;
+                    save();
                 } else {
                     table.changePlayer();
                     showTurn();
