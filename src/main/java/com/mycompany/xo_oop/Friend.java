@@ -63,8 +63,15 @@ public class Friend {
         Friend.lastId = lastId;
     }
 
+    @Override
+    public String toString() {
+        return "Friend{" + "id=" + id + ", name=" + name + ", age=" + age + ", tel=" + tel + '}';
+    }
+   
+
     public static void main(String[] args) {
         Friend f1 = new Friend("Pom", 70, "0813333333");
+        System.out.println(f1.toString());
 
     }
 
