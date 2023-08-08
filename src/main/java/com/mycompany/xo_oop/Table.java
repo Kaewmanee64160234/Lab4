@@ -57,7 +57,7 @@ public class Table {
     }
 
     public void changePlayer() {
-        if (currentPlay == player1) {
+        if (currentPlay.getSymbol().equals(player1.getSymbol()) ) {
             currentPlay = player2;
         } else {
             currentPlay = player1;

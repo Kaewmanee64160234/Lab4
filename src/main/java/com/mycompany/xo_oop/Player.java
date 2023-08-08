@@ -4,11 +4,13 @@
  */
 package com.mycompany.xo_oop;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class Player {
+public class Player implements Serializable{
 
     private String symbol;
     private int winCount;

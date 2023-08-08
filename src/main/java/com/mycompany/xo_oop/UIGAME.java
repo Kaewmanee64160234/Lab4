@@ -42,22 +42,27 @@ public class UIGAME extends javax.swing.JFrame {
     }
 
     public void lode() {
-        FileInputStream fis = null;
+        ObjectInputStream ois = null;
         try {
-            File file = new File("player.dat");
+            FileInputStream fis = null;
+            File file = new File("stat.dat");
             fis = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            ois = new ObjectInputStream(fis);
             this.o = (Player) ois.readObject();
             this.x = (Player) ois.readObject();
+            textDrawX.setText("Draw : " + x.getDrawCount());
+            textDrawO.setText("Draw : " + o.getDrawCount());
+            textWinX.setText("Win : " + x.getWinCount());
+            textWinO.setText("Win : " + o.getWinCount());
+            textLoseX.setText("Lose : " + x.getLoseCount());
+            textLoseO.setText("Lose : " + o.getLoseCount());
+
         } catch (Exception ex) {
             System.out.println("Load Error");
 
         } finally {
             try {
-                if (fis != null) {
-                    fis.close();
-
-                }
+                ois.close();
             } catch (IOException ex) {
                 Logger.getLogger(UIGAME.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -393,8 +398,9 @@ public class UIGAME extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTable1ActionPerformed
 
     private void process() {
-
+        lode();
         if (!isEnd) {
+
             NewGame.setVisible(false);
             showBoard();
 
@@ -404,8 +410,9 @@ public class UIGAME extends javax.swing.JFrame {
                 if (checkWin()) {
                     showBoard();
                     showResult();
-                    isEnd = true;
                     save();
+                    isEnd = true;
+
                 } else {
                     table.changePlayer();
                     showTurn();
