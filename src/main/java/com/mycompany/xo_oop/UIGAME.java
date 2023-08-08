@@ -4,6 +4,14 @@
  */
 package com.mycompany.xo_oop;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author USER
@@ -24,11 +32,35 @@ public class UIGAME extends javax.swing.JFrame {
         initComponents();
         this.x = new Player("X", 0, 0, 0);
         this.o = new Player("O", 0, 0, 0);
-
+        lode();
         showWelcome();
         newBoard();
         showBoard();
         showTurn();
+    }
+
+    public void lode() {
+        FileInputStream fis = null;
+        try {
+            File file = new File("player.dat");
+            fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            this.o = (Player) ois.readObject();
+            this.x = (Player) ois.readObject();
+        } catch (Exception ex) {
+            System.out.println("Load Error");
+
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(UIGAME.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
     /**
@@ -338,7 +370,7 @@ public class UIGAME extends javax.swing.JFrame {
         if (!isEnd) {
             NewGame.setVisible(false);
             showBoard();
-            
+
             if (table.setRowCol(row, col)) {
                 showBoard();
 
@@ -523,7 +555,7 @@ public class UIGAME extends javax.swing.JFrame {
             textWinO.setText("Win : " + o.getWinCount());
             textLoseX.setText("Lose : " + x.getLoseCount());
             textLoseO.setText("Lose : " + o.getLoseCount());
-           NewGame.setVisible(true);
+            NewGame.setVisible(true);
         } else if (table.checkColumn() || table.checkRow() || table.checkDiagonal()) {
             txtMessage.setText(table.getCurrentPlay().getSymbol() + " Win!!!");
             if (table.getCurrentPlay().getSymbol().equals("X")) {
@@ -546,7 +578,7 @@ public class UIGAME extends javax.swing.JFrame {
                 textLoseO.setText("Lose : " + o.getLoseCount());
             }
             isEnd = true;
-             NewGame.setVisible(true);
+            NewGame.setVisible(true);
 
         }
     }
