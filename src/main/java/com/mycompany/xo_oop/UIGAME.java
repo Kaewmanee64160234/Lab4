@@ -62,7 +62,10 @@ public class UIGAME extends javax.swing.JFrame {
 
         } finally {
             try {
-                ois.close();
+                if (ois != null) {
+                    ois.close();
+
+                }
             } catch (IOException ex) {
                 Logger.getLogger(UIGAME.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -81,7 +84,7 @@ public class UIGAME extends javax.swing.JFrame {
             oos.close();
             fos.close();
         } catch (Exception ex) {
-            System.out.println("ERROR!");
+            System.out.println("Save ERROR!");
         } finally {
             try {
                 if (fos != null) {
